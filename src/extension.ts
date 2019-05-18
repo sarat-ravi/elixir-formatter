@@ -1,14 +1,7 @@
 import { languages, ExtensionContext } from "vscode";
-
-import {
-  workspace,
-  Range,
-  TextDocument,
-  TextEdit,
-  window,
-} from "vscode";
+import { workspace, Range, TextDocument, TextEdit, window } from "vscode";
 import cp = require("child_process");
-// var path = require('path')
+var path = require('path')
 
 function fullDocumentRange(document: TextDocument): Range {
   const lastLineId = document.lineCount - 1;
@@ -17,14 +10,16 @@ function fullDocumentRange(document: TextDocument): Range {
 
 function format(document: TextDocument): Promise<TextEdit[]> {
   return new Promise((resolve, reject) => {
-    const cmd = `mix format ${document.fileName}`;
+    // Create mix command
+    const mixFormatArgs: string = workspace.getConfiguration("elixir.formatter").get("mixFormatArgs") || "";
+    const cmd = `mix format ${mixFormatArgs} ${document.fileName}`;
+
+    // Figure out the working directory to run mix format in
     const workspaceRootPath = workspace.rootPath ? workspace.rootPath : "";
     const relativePath: string = workspace.getConfiguration("elixir.formatter").get("formatterCwd") || "";
-    console.log("Sarat: Format called, relativePath: " + relativePath)
-    // const cwd = path.resolve(workspaceRootPath, relativePath);
-    const cwd = workspaceRootPath
-    console.log("Sarat: Format called, cwd!: " + cwd)
-    console.log("Saerat: command: " + cmd)
+    const cwd = path.resolve(workspaceRootPath, relativePath);
+
+    // Run the command
     cp.exec(
       cmd,
       {

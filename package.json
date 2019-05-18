@@ -2,8 +2,10 @@
   "name": "elixir-formatter",
   "displayName": "Elixir Formatter",
   "description": "Elixir code formatting using mix format",
-  "version": "1.2.5",
+  "keywords": ["Elixir", "mix", "formatter", "mix formatter"],
+  "version": "1.2.6",
   "publisher": "saratravi",
+  "icon": "images/logo.png",
   "license": "MIT",
   "engines": {
     "vscode": "^1.12.0"
@@ -21,6 +23,22 @@
     "compile": "tsc -watch -p ./",
     "postinstall": "node ./node_modules/vscode/bin/install",
     "test": "node ./node_modules/vscode/bin/test"
+  },
+  "configuration": {
+    "type": "object",
+    "title": "Elixir Formatter Settings",
+    "properties": {
+      "elixir.formatter.mixFormatArgs": {
+        "type": "string",
+        "default": "",
+        "description": "Arguments to pass to 'mix format'"
+      },
+      "elixir.formatter.formatterCwd": {
+        "type": "string",
+        "default": "",
+        "description": "The working directory to run 'mix format' from (relative to workspace directory)"
+      }
+    }
   },
   "repository": {
     "type": "git",

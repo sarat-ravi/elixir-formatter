@@ -1,5 +1,7 @@
 # Overview
-Format your elixir code automatically using `mix format`
+Format your elixir code automatically using `mix format`, by simply installing this extension and configuring it to be
+the default formatter for `elixir`, if it is not already chosen by default.
+If the `editor.formatOnSave` setting in Visual Studio Code is set, then the elixir file that is being edited will be formatted automatically on saving.
 
 ## Configuration
 By default, this extension runs `mix format` using the workspace root directory as the working directory. The following

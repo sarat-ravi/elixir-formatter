@@ -1,0 +1,36 @@
+{
+  "name": "elixir-formatter",
+  "displayName": "Elixir Formatter",
+  "description": "Elixir code formatting using mix format",
+  "version": "1.2.5",
+  "publisher": "sarat-ravi",
+  "license": "MIT",
+  "engines": {
+    "vscode": "^1.12.0"
+  },
+  "categories": [
+    "Other"
+  ],
+  "activationEvents": [
+    "onLanguage:elixir"
+  ],
+  "main": "./out/src/extension",
+  "contributes": {},
+  "scripts": {
+    "vscode:prepublish": "tsc -p ./",
+    "compile": "tsc -watch -p ./",
+    "postinstall": "node ./node_modules/vscode/bin/install",
+    "test": "node ./node_modules/vscode/bin/test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/sarat-ravi/elixir-formatter.git"
+  },
+  "devDependencies": {
+    "typescript": "^2.0.3",
+    "vscode": "^1.0.0",
+    "mocha": "^2.3.3",
+    "@types/node": "^6.0.40",
+    "@types/mocha": "^2.2.32"
+  }
+}

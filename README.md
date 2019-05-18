@@ -5,11 +5,11 @@ Format your elixir code automatically using `mix format`
 By default, this extension runs `mix format` using the workspace root directory as the working directory. The following
 options are available for the user to configure, in `settings.json`:
 
-```json
+```javascript
 {
-  "elixir.formatter: {
-    "mixFormatArgs": "--dry-run",
-    "formatterCwd": "../some/dir/to/run/mix/format/from"
+  elixir.formatter: {
+    mixFormatArgs: "--dry-run",
+    formatterCwd: "../some/dir/to/run/mix/format/from"
   }
 }
 ```

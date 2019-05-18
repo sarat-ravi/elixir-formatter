@@ -3,7 +3,7 @@
   "displayName": "Elixir Formatter",
   "description": "Elixir code formatting using mix format",
   "version": "1.2.5",
-  "publisher": "sarat-ravi",
+  "publisher": "saratravi",
   "license": "MIT",
   "engines": {
     "vscode": "^1.12.0"

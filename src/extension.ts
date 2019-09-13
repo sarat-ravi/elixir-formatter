@@ -27,6 +27,9 @@ function helpfulMixErrorMessage(error: any): string {
 function format(document: TextDocument): Promise<string> {
   return new Promise((resolve, reject) => {
     // Create mix command
+    const mixCommandPath: string =
+      workspace.getConfiguration("elixir.formatter").get("mixCommandPath") ||
+      "mix";
     const mixFormatArgsSetting: string = workspace
       .getConfiguration("elixir.formatter")
       .get("mixFormatArgs");
@@ -41,7 +44,9 @@ function format(document: TextDocument): Promise<string> {
       workspace.getConfiguration("elixir.formatter").get("formatterCwd") || "";
     const cwd = path.resolve(workspaceRootPath, relativePath);
 
-    const proc = spawn("mix", ["format", ...mixFormatArgs, "-"], { cwd });
+    const proc = spawn(mixCommandPath, ["format", ...mixFormatArgs, "-"], {
+      cwd
+    });
     proc.on("error", reject);
 
     // If process fails to start, write syscall will fail synchronously and

@@ -11,6 +11,7 @@ options are available for the user to configure, in `settings.json`:
 {
   elixir.formatter: {
     mixFormatArgs: "--dry-run",
+    mixCommandPath: "/etc/custom/elixir/path/bin/mix",
     formatterCwd: "../some/dir/to/run/mix/format/from"
   }
 }

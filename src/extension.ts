@@ -13,10 +13,12 @@ function fullDocumentRange(document: TextDocument): Range {
 function helpfulMixErrorMessage(error: any): string {
   if (error.code === "ENOENT") {
     return (
-      "mix command not found. It was expected to be in $PATH: " +
+      (error.path || "mix") +
+      " command not found. It was expected to be in $PATH: " +
       process.env.PATH +
       ". Note that VSCode is running in an environment different from your terminal, " +
-      "and it doesn't read your shell rc files."
+      "and it doesn't read your shell rc files. You can set elixir.formatter.mixCommandPath " +
+      "to a custom location if it's not in your $PATH."
     );
   }
   // Get rid of standard header to leave space in the error popup
@@ -29,7 +31,7 @@ function format(document: TextDocument): Promise<string> {
     // Create mix command
     const mixCommandPath: string =
       workspace.getConfiguration("elixir.formatter").get("mixCommandPath") ||
-      "mix";
+      "/bin/mix";
     const mixFormatArgsSetting: string = workspace
       .getConfiguration("elixir.formatter")
       .get("mixFormatArgs");
